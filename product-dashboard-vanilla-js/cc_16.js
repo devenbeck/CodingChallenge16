@@ -32,3 +32,18 @@ async function fetchProductsAsync() {    //to try to fetch product data
         handleError(error); //if error occurs, passes the errors to handleError function
     }
 };
+//Task 4: Display the Products
+function displayProducts(products) {
+    const container= document.getElementById("product-container"); //Selects #product-container
+    products.slice(0, 5).forEach(product => {     //Loops through first 5 products
+        const div= document.createElement("div");
+        div.classList.add("product-card"); 
+//Creates HTML elements to show each product’s name, price, and image:
+        div.innerHTML= `
+            <h2>${product.fields.name}</h2>
+            <p>$${(product.fields.price/100).toFixed(2)}</p>
+            <img src="${product.fields.image[0].url}" alt="${product.fields.name}"/> `;
+        container.appendChild(div); //Appends them to the container
+    });
+}
+
